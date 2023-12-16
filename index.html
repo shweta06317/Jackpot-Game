@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <style>
+            body {
+                background-color: rgb(137, 176, 137);
+                position: relative;
+            }
+
+            .container {
+                width: 87%;
+                height: 500px;
+                border: 1px solid rgb(0, 0, 0);
+                background-color: rgb(255, 255, 255);
+                margin-left: 50px;
+                display: flex;
+                flex-wrap: wrap;
+            }
+
+            .circle {
+                width: 50px;
+                height: 50px;
+                background-color: rgb(49, 96, 24);
+                border-radius: 50%;
+                margin: 10px;
+                display: flex;
+                justify-content: center;
+                color: white;
+                align-items: center;
+                cursor: pointer;
+                /* Added cursor pointer for better UX */
+            }
+
+            .circle:hover {
+                background-color: rgb(88, 148, 55);
+            }
+
+            .smaller-circle {
+                background-color: grey !important;
+                pointer-events: none;
+                
+                /* Disable pointer events for the smaller-circle class */
+            }
+
+            .won {
+                display: none;
+                background-color: aliceblue;
+                color: black;
+                width: 300px;
+                height: 300px;
+                border: 1px solid black;
+                position: absolute;
+                top: 60px;
+                left: 36%;
+                padding-left: 26px;
+                box-sizing: border-box;
+                border-radius: 10px;
+                align-items: center;
+            }
+
+            img {
+                border-radius: 10px;
+                margin-top: 10px;
+                width: 250px;
+                height: 180px;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="container"></div>
+
+        
+        <div class="won">
+            <img src="https://indianmemetemplates.com/wp-content/uploads/2019/02/amitabh-kbc-ek-crore.jpg" alt="">
+            <h1> Adhbhut.......</h1>
+        </div>
+
+        <script>
+            var clutter = "";
+            for ( i = 1; i <=100 ; i++ ) {
+                clutter += ` <div class="circle" data-number="${ i }">${ i }</div>`;
+            }
+            document.querySelector( ".container" ).innerHTML = clutter;
+
+            var clik;
+            document.querySelector( ".container" ).addEventListener( "click", function ( dets ) {
+                clik = Number( dets.target.textContent );
+
+                // jackpot = [Math.floor(Math.random() * 100) + 1];
+                jackpot = 56;
+
+               for(let i=1;i<=10;i++)
+               {
+                console.log( clik );
+                if ( jackpot == clik ) {
+                    document.querySelector( ".won" ).style.display= "block";
+                    
+                    
+                }
+                if ( jackpot > clik ) {
+                    alert( `Jackpot is larger than ${ clik }` );
+                    for(i=1;i<=clik;i++){
+        
+                        document.querySelector(`.circle[data-number="${i}"]`).classList.add('smaller-circle');
+    
+                    }
+                }
+                if ( jackpot < clik ) {
+                    alert( `Jackpot is smaller than ${ clik } `);
+                    for ( i = clik + 1; i <= 100; i++ ) {
+                        document.querySelector(`.circle[data-number="${i}"]`).classList.add('smaller-circle');
+
+                    }
+                }
+               }
+            } )
+        </script>
+    </body>
+
+</html>
